@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Running Sequence</title>
+  <style>
+    #box {
+      width: 400px;
+      height: 400px;
+      position: relative;
+      border: 1px solid black;
+      overflow: hidden;
+    }
+    .point {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      background-color: red;
+      transition: top 1s, left 1s;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <div id="point" class="point"></div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const point = document.getElementById('point');
+      const positions = [
+        { top: '0px', left: '0px' },       // A
+        { top: '0px', left: '350px' },     // B
+        { top: '350px', left: '350px' },   // C
+        { top: '350px', left: '0px' },     // D
+        { top: '0px', left: '0px' }        // A again
+      ];
+
+      let currentIndex = 0;
+
+      function moveToNextPosition() {
+        point.style.top = positions[currentIndex].top;
+        point.style.left = positions[currentIndex].left;
+
+        currentIndex = (currentIndex + 1) % positions.length;
+
+        setTimeout(moveToNextPosition, 1000); // 1 second delay for each move
+      }
+
+      moveToNextPosition();
+    });
+  </script>
+</body>
+</html>
