@@ -23,12 +23,19 @@
 </head>
 <body>
   <div id="box">
-    <div id="point" class="point"></div>
+    <div id="pointA" class="point"></div>
+    <div id="pointB" class="point"></div>
+    <div id="pointC" class="point"></div>
+    <div id="pointD" class="point"></div>
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const point = document.getElementById('point');
-      const positions = [
+      const pointA = document.getElementById('pointA');
+      const pointB = document.getElementById('pointB');
+      const pointC = document.getElementById('pointC');
+      const pointD = document.getElementById('pointD');
+      
+      const positionsA = [
         { top: '0px', left: '0px' },       // A
         { top: '0px', left: '350px' },     // B
         { top: '350px', left: '350px' },   // C
@@ -36,13 +43,46 @@
         { top: '0px', left: '0px' }        // A again
       ];
 
+      const positionsB = [
+        { top: '0px', left: '350px' },     // B
+        { top: '350px', left: '350px' },   // C
+        { top: '350px', left: '0px' },     // D
+        { top: '0px', left: '0px' },       // A
+        { top: '0px', left: '350px' }      // B again
+      ];
+
+      const positionsC = [
+        { top: '350px', left: '350px' },   // C
+        { top: '350px', left: '0px' },     // D
+        { top: '0px', left: '0px' },       // A
+        { top: '0px', left: '350px' },     // B
+        { top: '350px', left: '350px' }    // C again
+      ];
+
+      const positionsD = [
+        { top: '350px', left: '0px' },     // D
+        { top: '0px', left: '0px' },       // A
+        { top: '0px', left: '350px' },     // B
+        { top: '350px', left: '350px' },   // C
+        { top: '350px', left: '0px' }      // D again
+      ];
+
       let currentIndex = 0;
 
       function moveToNextPosition() {
-        point.style.top = positions[currentIndex].top;
-        point.style.left = positions[currentIndex].left;
+        pointA.style.top = positionsA[currentIndex].top;
+        pointA.style.left = positionsA[currentIndex].left;
 
-        currentIndex = (currentIndex + 1) % positions.length;
+        pointB.style.top = positionsB[currentIndex].top;
+        pointB.style.left = positionsB[currentIndex].left;
+
+        pointC.style.top = positionsC[currentIndex].top;
+        pointC.style.left = positionsC[currentIndex].left;
+
+        pointD.style.top = positionsD[currentIndex].top;
+        pointD.style.left = positionsD[currentIndex].left;
+
+        currentIndex = (currentIndex + 1) % positionsA.length;
 
         setTimeout(moveToNextPosition, 1000); // 1 second delay for each move
       }
